@@ -1,0 +1,44 @@
+body {
+	background-color: #141414;
+	background-image: url('../imgs/background.jpg');
+	background-attachment: fixed;
+	padding-top: 35px;
+}
+
+.navButton {
+	cursor: pointer;
+}
+
+.songList {
+	padding-bottom: 250px;
+}
+
+.hiddenList { 
+	display: none;
+}
+
+#middleContainer {
+	background-color: rgba(255, 255, 255, 0.95);
+	box-shadow: 0px 0px 30px 5px #141414;
+}
+
+#playPrev,
+#playPause,
+#playNext {
+	color: #ffffff;
+	padding-top: 35px;
+}
+
+#playNext {
+	padding-right: 80px;
+}
+
+#logo {
+	 display: block; 
+	 margin-left: auto; 
+	 margin-right: auto;
+}
+
+#nav {
+	 table-layout: fixed;
+}
