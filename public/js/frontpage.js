@@ -80,10 +80,10 @@ var loadPosts = function() {
             $(currentPosts).append(html[i].embed);
             currentPlaylist.push(SC.Widget($(currentPosts).children('iframe').last()[0]));
         }
-        var lastWidgets = currentPlaylist.slice(-5);
-        lastWidgets[0].unbind(SC.Widget.Events.FINISH);
-        lastWidgets[0].unbind(SC.Widget.Events.PAUSE);
-        setTrigger(lastWidgets[3]);
+        var lastWidgets = currentPlaylist.slice(-6);
+        lastWidgets[1].unbind(SC.Widget.Events.FINISH);
+        lastWidgets[1].unbind(SC.Widget.Events.PAUSE);
+        setTrigger(lastWidgets[4]);
         for (i = 1; i < lastWidgets.length - 1; i++) {
             bindWidgets(lastWidgets[i - 1], lastWidgets[i], lastWidgets[i + 1]);
         }
@@ -105,10 +105,6 @@ var bindWidgets = function(prev, curr, next) {
         player.song.prev = prev;
         player.song.curr = curr;
         player.song.next = next;
-        player.song.curr.getCurrentSound(function(sound) {
-            var title = sound.title;
-            $('#songTitle').html(title.slice(0, 30));
-        });
     });
     curr.bind(SC.Widget.Events.PAUSE, function() {
         player.song.curr.isPaused(function(resp) {
@@ -277,6 +273,24 @@ $('#playNext').click(function(event) {
     event.preventDefault();
     player.song.next.play();
     player.song.next.seekTo(0);
+});
+
+$('.glyphicon').mouseover(function() {
+    $(this).css('color', '#ff4400');
+});
+
+$('.glyphicon').mouseout(function() {
+    $(this).css('color', '#ffffff');
+});
+
+$('.navButton').mouseover(function() {
+    $(this).css('color', '#ff4400');
+});
+
+$('.navButton').mouseout(function() {
+    if(this.id !== player.currentGenre) {
+        $(this).css('color', '#333333');
+    }
 });
 
 $(document).ready(function() {
